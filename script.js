@@ -1,6 +1,5 @@
-// Initialize EmailJS with your public key
 (function() {
-    emailjs.init('BgqcGV8Jgc1BMGgH5'); // Replace with your actual public key
+    emailjs.init('BgqcGV8Jgc1BMGgH5'); // Replace with your EmailJS public key
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentDiv = document.getElementById('content');
 
     const services = [
-        { title: 'Dashboards & Reports', description: 'We create dynamic dashboards and reports using Power BI, turning data into actionable insights.' },
-        { title: 'Data Analysis', description: 'Our team helps analyze complex datasets to uncover trends, patterns, and key business metrics.' },
-        { title: 'Data Migration & Cleaning', description: 'We offer seamless data migration and cleaning services to ensure data integrity and smooth transitions.' },
-        { title: 'Website Creation', description: 'Need a website? We build custom websites tailored to your business needs and vision.' },
-        { title: 'Computer Building', description: 'From gaming rigs to workstations, we assemble custom computers to suit your requirements.' }
+        { title: 'Dashboards & Reports', description: 'We create dynamic dashboards and reports using Power BI.' },
+        { title: 'Data Analysis', description: 'We analyze complex datasets to uncover trends and patterns.' },
+        { title: 'Data Migration & Cleaning', description: 'We offer seamless data migration and cleaning services.' },
+        { title: 'Website Creation', description: 'We build custom websites tailored to your business needs.' },
+        { title: 'Computer Building', description: 'We assemble custom computers to suit your requirements.' }
     ];
 
     function loadHomePage() {
@@ -31,12 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
         contentDiv.innerHTML = `
             <div class="about">
                 <h2>About Us</h2>
-                <p>We have extensive experience in managing company and project financial data. We specialize in creating insightful reports and dashboards, empowering businesses to make data-driven decisions.</p>
+                <p>We specialize in managing financial data, creating insightful reports, and empowering businesses with data-driven decisions.</p>
                 <h3>Our Education</h3>
                 <ul>
-                    <li>M.S. in Business Analytics and Applied AI – University of Rochester (2024)</li>
-                    <li>B.S. in Computing and Information Technology – RIT (2018)</li>
-                    <li>A.S. in Computer Science – Finger Lakes Community College (2015)</li>
+                    <li>M.S. in Business Analytics – University of Rochester (2024)</li>
+                    <li>B.S. in Computing – RIT (2018)</li>
+                    <li>A.S. in Computer Science – FLCC (2015)</li>
                 </ul>
             </div>
         `;
@@ -58,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function sendEmail(event) {
         event.preventDefault();
-
         const templateParams = {
             name: document.getElementById('name').value,
             phone: document.getElementById('phone').value,
@@ -68,10 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         emailjs.send('service_y49mq9o', 'template_gknldjz', templateParams)
             .then(() => {
-                document.getElementById('form-message').textContent = 'Your message has been sent successfully!';
+                document.getElementById('form-message').textContent = 'Message sent successfully!';
             })
             .catch(() => {
-                document.getElementById('form-message').textContent = 'Error sending message. Please try again.';
+                document.getElementById('form-message').textContent = 'Error sending message. Try again.';
             });
     }
 
