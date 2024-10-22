@@ -9,18 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentDiv = document.getElementById('content');
 
     const services = [
-        { title: 'Dashboards & Reports', description: 'We create dynamic dashboards and reports using Power BI.' },
-        { title: 'Data Analysis', description: 'We analyze complex datasets to uncover trends and patterns.' },
-        { title: 'Data Migration & Cleaning', description: 'We offer seamless data migration and cleaning services.' },
-        { title: 'Website Creation', description: 'We build custom websites tailored to your business needs.' },
-        { title: 'Computer Building', description: 'We assemble custom computers to suit your requirements.' }
+        { title: 'Dashboards & Reports:', description: 'We create dynamic dashboards and reports using Power BI.' },
+        { title: 'Data Analysis:', description: 'We analyze complex datasets to uncover trends and patterns.' },
+        { title: 'Data Migration & Cleaning:', description: 'We offer seamless data migration and cleaning services.' },
+        { title: 'Website Creation:', description: 'We build custom websites tailored to your business needs.' },
+        { title: 'Computer Building:', description: 'We assemble custom computers to suit your requirements.' }
     ];
 
     const aboutCards = [
-        { title: 'Experience', description: 'We specialize in managing/cleaning/manipulating data to create insightful reports, and empower businesses with data-driven decisions.' },
-        { title: 'Education', description: 'M.S. in Business Analytics – University of Rochester (2024)' },
-        { title: 'Education', description: 'B.S. in Computing and Information Technologies – RIT (2018)' },
-        { title: 'Education', description: 'A.S. in Computer Science – FLCC (2015)' }
+        { title: 'Experience:', description: 'We specialize in managing/cleaning/manipulating data to create insightful reports, and empower businesses with data-driven decisions.' },
+        { title: 'Education:', description: 'M.S. in Business Analytics – University of Rochester (2025*), B.S. in Computing and Information Technologies – RIT (2018), A.S. in Computer Science – FLCC (2015)' },
     ];
 
     function loadHomePage() {
