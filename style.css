@@ -1,3 +1,4 @@
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -12,6 +13,7 @@ body {
     text-align: center;
 }
 
+/* Header Styling */
 .header {
     text-align: center;
     padding: 50px 20px;
@@ -22,19 +24,32 @@ body {
     margin-bottom: 20px;
 }
 
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Navigation Styling */
 .nav {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 50px;
     margin-top: 20px;
-    font-size: 1.5rem;
-    text-transform: uppercase;
+    padding: 10px 0;
 }
 
 .nav-link {
     color: #4caf50;
     text-decoration: none;
+    font-size: 1.5rem;
     font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
 }
 
 .nav-link.active {
@@ -45,6 +60,7 @@ body {
     color: #81c784;
 }
 
+/* Content Styling */
 .content {
     display: flex;
     flex-wrap: wrap;
@@ -53,25 +69,32 @@ body {
     margin-top: 30px;
 }
 
+/* Card Styling */
 .card {
     background-color: #292929;
     padding: 20px;
     border-radius: 8px;
     width: 300px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 .card:hover {
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-.footer {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 0.9rem;
-}
-
+/* Contact Form Styling */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -96,8 +119,50 @@ body {
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .contact-form button:hover {
     background-color: #388e3c;
+}
+
+.contact-form p {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+/* Footer Styling */
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-link {
+        font-size: 1.2rem;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    .contact-form {
+        width: 90%;
+    }
 }

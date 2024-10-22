@@ -16,29 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: 'Computer Building', description: 'We assemble custom computers to suit your requirements.' }
     ];
 
+    const aboutCards = [
+        { title: 'Experience', description: 'We specialize in managing/cleaning/manipulating data to create insightful reports, and empower businesses with data-driven decisions.' },
+        { title: 'Education', description: 'M.S. in Business Analytics – University of Rochester (2024)' },
+        { title: 'Education', description: 'B.S. in Computing and Information Technologies – RIT (2018)' },
+        { title: 'Education', description: 'A.S. in Computer Science – FLCC (2015)' }
+    ];
+
     function loadHomePage() {
-        contentDiv.innerHTML = '';
-        services.forEach(service => {
-            const card = document.createElement('div');
-            card.classList.add('card');
-            card.innerHTML = `<h2>${service.title}</h2><p>${service.description}</p>`;
-            contentDiv.appendChild(card);
-        });
+        renderCards(services);
     }
 
     function loadAboutPage() {
-        contentDiv.innerHTML = `
-            <div class="about">
-                <h2>About Us</h2>
-                <p>We specialize in managing financial data, creating insightful reports, and empowering businesses with data-driven decisions.</p>
-                <h3>Our Education</h3>
-                <ul>
-                    <li>M.S. in Business Analytics – University of Rochester (2024)</li>
-                    <li>B.S. in Computing – RIT (2018)</li>
-                    <li>A.S. in Computer Science – FLCC (2015)</li>
-                </ul>
-            </div>
-        `;
+        renderCards(aboutCards);
     }
 
     function loadContactPage() {
@@ -53,6 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p id="form-message"></p>
             </form>
         `;
+    }
+
+    function renderCards(cards) {
+        contentDiv.innerHTML = ''; // Clear previous content
+        cards.forEach(card => {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card');
+            cardElement.innerHTML = `<h2>${card.title}</h2><p>${card.description}</p>`;
+            contentDiv.appendChild(cardElement);
+        });
     }
 
     function sendEmail(event) {
@@ -88,5 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
         loadContactPage();
     });
 
+    // Load home page by default
     loadHomePage();
 });
