@@ -1,6 +1,5 @@
-(function() {
-    emailjs.init('BgqcGV8Jgc1BMGgH5'); // Replace with your actual EmailJS public key
-})();
+// Initialize EmailJS with your public key
+emailjs.init('BgqcGV8Jgc1BMGgH5'); // Replace with your public key
 
 document.addEventListener('DOMContentLoaded', () => {
     const homeLink = document.getElementById('home-link');
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const aboutCards = [
-        { title: 'Experience:', description: 'We specialize in managing/cleaning/manipulating data to create insightful reports, and empower businesses with data-driven decisions.' },
+        { title: 'Experience:', description: 'We specialize in managing/cleaning/manipulating data to create insightful reports and empower businesses with data-driven decisions.' },
         { title: 'Education:', description: 'M.S. in Business Analytics – University of Rochester (2025*), B.S. in Computing and Information Technologies – RIT (2018), A.S. in Computer Science – FLCC (2015)' }
     ];
 
@@ -71,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('form-message').textContent = 'Message sent successfully!';
                 document.getElementById('form-message').style.color = 'green';
             })
-            .catch(() => {
+            .catch((error) => {
+                console.error('FAILED...', error);
                 document.getElementById('form-message').textContent = 'Error sending message. Try again.';
                 document.getElementById('form-message').style.color = 'red';
             });
