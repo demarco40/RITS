@@ -1,5 +1,5 @@
 (function() {
-    emailjs.init('BgqcGV8Jgc1BMGgH5'); // Replace with your EmailJS public key
+    emailjs.init('BgqcGV8Jgc1BMGgH5'); // Replace with your actual EmailJS public key
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const aboutCards = [
         { title: 'Experience:', description: 'We specialize in managing/cleaning/manipulating data to create insightful reports, and empower businesses with data-driven decisions.' },
-        { title: 'Education:', description: 'M.S. in Business Analytics – University of Rochester (2025*), B.S. in Computing and Information Technologies – RIT (2018), A.S. in Computer Science – FLCC (2015)' },
+        { title: 'Education:', description: 'M.S. in Business Analytics – University of Rochester (2025*), B.S. in Computing and Information Technologies – RIT (2018), A.S. in Computer Science – FLCC (2015)' }
     ];
 
     function loadHomePage() {
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadContactPage() {
         contentDiv.innerHTML = `
-            <form class="contact-form" onsubmit="return sendEmail(event)">
+            <form class="contact-form">
                 <h2>Contact Us</h2>
                 <input type="text" id="name" placeholder="Name" required>
                 <input type="tel" id="phone" placeholder="Phone Number" required>
@@ -41,6 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p id="form-message"></p>
             </form>
         `;
+
+        const form = contentDiv.querySelector('.contact-form');
+        form.addEventListener('submit', sendEmail); // Dynamically bind the event listener
     }
 
     function renderCards(cards) {
@@ -54,7 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function sendEmail(event) {
-        event.preventDefault();
+        event.preventDefault(); // Prevent form reload
+
         const templateParams = {
             name: document.getElementById('name').value,
             phone: document.getElementById('phone').value,
@@ -65,9 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
         emailjs.send('service_y49mq9o', 'template_gknldjz', templateParams)
             .then(() => {
                 document.getElementById('form-message').textContent = 'Message sent successfully!';
+                document.getElementById('form-message').style.color = 'green';
             })
             .catch(() => {
                 document.getElementById('form-message').textContent = 'Error sending message. Try again.';
+                document.getElementById('form-message').style.color = 'red';
             });
     }
 
