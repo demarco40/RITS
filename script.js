@@ -1,7 +1,7 @@
-// Initialize EmailJS with your public key
-emailjs.init('BgqcGV8Jgc1BMGgH5'); // Replace with your public key
-
+// Ensure EmailJS SDK is initialized properly
 document.addEventListener('DOMContentLoaded', () => {
+    emailjs.init('BgqcGV8Jgc1BMGgH5'); // Replace with your public key
+
     const homeLink = document.getElementById('home-link');
     const aboutLink = document.getElementById('about-link');
     const contactLink = document.getElementById('contact-link');
@@ -16,18 +16,21 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const aboutCards = [
-        { title: 'Experience:', description: 'We specialize in managing/cleaning/manipulating data to create insightful reports and empower businesses with data-driven decisions.' },
+        { title: 'Experience:', description: 'We specialize in managing, cleaning, and manipulating data to create insightful reports and empower businesses with data-driven decisions.' },
         { title: 'Education:', description: 'M.S. in Business Analytics – University of Rochester (2025*), B.S. in Computing and Information Technologies – RIT (2018), A.S. in Computer Science – FLCC (2015)' }
     ];
 
+    // Dynamically load the home page with service cards
     function loadHomePage() {
         renderCards(services);
     }
 
+    // Dynamically load the About Us page with about cards
     function loadAboutPage() {
         renderCards(aboutCards);
     }
 
+    // Dynamically load the Contact Us page with a form
     function loadContactPage() {
         contentDiv.innerHTML = `
             <form class="contact-form">
@@ -42,20 +45,25 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         const form = contentDiv.querySelector('.contact-form');
-        form.addEventListener('submit', sendEmail); // Dynamically bind the event listener
+        form.addEventListener('submit', sendEmail); // Bind the submit event to sendEmail function
     }
 
+    // Function to render a list of cards
     function renderCards(cards) {
         contentDiv.innerHTML = ''; // Clear previous content
         cards.forEach(card => {
             const cardElement = document.createElement('div');
             cardElement.classList.add('card');
-            cardElement.innerHTML = `<h2>${card.title}</h2><p>${card.description}</p>`;
+            cardElement.innerHTML = `
+                <h2>${card.title}</h2>
+                <p>${card.description}</p>
+            `;
             contentDiv.appendChild(cardElement);
         });
     }
 
-    function sendEmail(event) {
+    // Function to send email via EmailJS
+    async function sendEmail(event) {
         event.preventDefault(); // Prevent form reload
 
         const templateParams = {
@@ -65,18 +73,22 @@ document.addEventListener('DOMContentLoaded', () => {
             message: document.getElementById('description').value
         };
 
-        emailjs.send('service_y49mq9o', 'template_gknldjz', templateParams)
-            .then(() => {
+        try {
+            const response = await emailjs.send('service_y49mq9o', 'template_gknldjz', templateParams);
+            if (response.status === 200) {
                 document.getElementById('form-message').textContent = 'Message sent successfully!';
                 document.getElementById('form-message').style.color = 'green';
-            })
-            .catch((error) => {
-                console.error('FAILED...', error);
-                document.getElementById('form-message').textContent = 'Error sending message. Try again.';
-                document.getElementById('form-message').style.color = 'red';
-            });
+            } else {
+                throw new Error('Failed to send message.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('form-message').textContent = 'Error sending message. Please try again.';
+            document.getElementById('form-message').style.color = 'red';
+        }
     }
 
+    // Event listeners for navigation links
     homeLink.addEventListener('click', (e) => {
         e.preventDefault();
         loadHomePage();
@@ -92,6 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
         loadContactPage();
     });
 
-    // Load home page by default
+    // Load the home page by default
     loadHomePage();
 });
