@@ -25,7 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    // Function to update the active link in the navigation bar
+    function setActiveLink(link) {
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        link.classList.add('active');
+    }
+
     function loadHomePage() {
+        setActiveLink(homeLink);
         contentDiv.innerHTML = ''; // Clear previous content
         services.forEach(service => {
             const card = document.createElement('div');
@@ -52,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadAboutPage() {
+        setActiveLink(aboutLink);
         contentDiv.innerHTML = `
             <div class="about-section">
                 <h2>About Us</h2>
@@ -81,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadContactPage() {
+        setActiveLink(contactLink);
         contentDiv.innerHTML = `
             <form class="contact-form">
                 <h2>Contact Us</h2>
@@ -98,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadProjectsPage() {
+        setActiveLink(projectsLink);
         contentDiv.innerHTML = '';
         sampleProjects.forEach(project => {
             const projectElement = document.createElement('div');
