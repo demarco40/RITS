@@ -1,4 +1,3 @@
-// Initialize EmailJS and set up content dynamically on page load
 document.addEventListener('DOMContentLoaded', () => {
     emailjs.init('BgqcGV8Jgc1BMGgH5'); // Replace with your public key
 
@@ -21,12 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Sales Dashboard for Retail',
             description: 'A Power BI dashboard that provides insights into monthly sales, top products, and sales by region.',
             features: ['Monthly Sales Overview', 'Product Category Insights', 'Regional Sales Map'],
-            imageUrl: 'assets/dashboard.png', // Path to your image
+            imageUrl: 'assets/dashboard.png',
             caption: 'Sales Dashboard for Retail'
         }
     ];
 
-    // Function to load the Home page with service cards
     function loadHomePage() {
         contentDiv.innerHTML = ''; // Clear previous content
         services.forEach(service => {
@@ -39,9 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             contentDiv.appendChild(card);
         });
+
+        const whyChooseUsSection = document.createElement('section');
+        whyChooseUsSection.classList.add('why-choose-us');
+        whyChooseUsSection.innerHTML = `
+            <h2>Why Choose Us</h2>
+            <ul>
+                <li><strong>Data-Driven Insights</strong> – We turn data into actionable insights to drive your business forward.</li>
+                <li><strong>Custom Solutions</strong> – Every business is unique, and so are our solutions.</li>
+                <li><strong>Professional Support</strong> – We provide ongoing support to ensure your success.</li>
+            </ul>
+        `;
+        contentDiv.appendChild(whyChooseUsSection);
     }
 
-    // Function to load the About Us page with structured education and experience
     function loadAboutPage() {
         contentDiv.innerHTML = `
             <div class="about-section">
@@ -71,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // Function to load the Contact Us page with a contact form
     function loadContactPage() {
         contentDiv.innerHTML = `
             <form class="contact-form">
@@ -86,12 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         const form = contentDiv.querySelector('.contact-form');
-        form.addEventListener('submit', sendEmail); // Bind the submit event to sendEmail function
+        form.addEventListener('submit', sendEmail);
     }
 
-    // Function to load the Sample Projects page with clickable images
     function loadProjectsPage() {
-        contentDiv.innerHTML = ''; // Clear existing content
+        contentDiv.innerHTML = '';
         sampleProjects.forEach(project => {
             const projectElement = document.createElement('div');
             projectElement.classList.add('project-card');
@@ -108,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
             contentDiv.appendChild(projectElement);
         });
 
-        // Set up click event listeners for each project image to open the modal
         document.querySelectorAll('.project-image-side').forEach(image => {
             image.addEventListener('click', function() {
                 openModal(this.src, this.getAttribute('data-caption'));
@@ -116,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Function to open the modal with the clicked image
     function openModal(src, caption) {
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImage");
@@ -127,21 +132,18 @@ document.addEventListener('DOMContentLoaded', () => {
         captionText.textContent = caption;
     }
 
-    // Event listener to close the modal when clicking the "close" button
     document.querySelector('.close').onclick = function() {
         document.getElementById("imageModal").style.display = "none";
     };
 
-    // Event listener to close the modal when clicking outside the modal content
     document.getElementById("imageModal").onclick = function(event) {
         if (event.target === this) {
             this.style.display = "none";
         }
     };
 
-    // Function to send an email via EmailJS
     async function sendEmail(event) {
-        event.preventDefault(); // Prevent form reload
+        event.preventDefault();
 
         const templateParams = {
             name: document.getElementById('name').value,
@@ -165,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Event listeners for navigation links
     homeLink.addEventListener('click', (e) => {
         e.preventDefault();
         loadHomePage();
@@ -186,6 +187,5 @@ document.addEventListener('DOMContentLoaded', () => {
         loadProjectsPage();
     });
 
-    // Load the home page by default
     loadHomePage();
 });

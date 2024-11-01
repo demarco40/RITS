@@ -36,22 +36,6 @@ p {
     line-height: 1.6;
 }
 
-.cta-button {
-    padding: 10px 20px;
-    background-color: #FF8C00;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.cta-button:hover {
-    background-color: #FFA500;
-}
-
 /* Navigation Styling */
 .nav {
     display: flex;
@@ -95,6 +79,7 @@ p {
     width: 300px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
 }
 
 .card:hover {
@@ -113,11 +98,11 @@ p {
     background-color: #292929;
     padding: 20px;
     border-radius: 8px;
-    margin-top: 30px;
+    margin-top: 40px;
     color: #fff;
     text-align: left;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 40px auto;
 }
 
 .why-choose-us h2 {
@@ -133,6 +118,29 @@ p {
 .why-choose-us li {
     margin-bottom: 10px;
     line-height: 1.6;
+}
+
+/* Project Card Layout */
+.project-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: #292929;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.project-image-side {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.project-details {
+    flex: 1;
+    text-align: left;
 }
 
 /* Modal Styling */
@@ -187,15 +195,26 @@ p {
     font-size: 0.9rem;
 }
 
-.footer a {
-    color: #FF8C00;
-    margin: 0 10px;
-    font-size: 1.5rem;
+.footer p {
+    margin-bottom: 10px;
 }
 
-.footer a:hover {
-    color: #FFA500;
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
+
+.footer-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.footer-icon:hover {
+    transform: scale(1.1);
+}
+
 
 /* Responsive Design */
 @media (max-width: 600px) {
