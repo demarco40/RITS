@@ -1,10 +1,11 @@
-// Ensure EmailJS SDK is initialized properly
+// Ensure EmailJS is initialized and content dynamically created
 document.addEventListener('DOMContentLoaded', () => {
     emailjs.init('BgqcGV8Jgc1BMGgH5'); // Replace with your public key
 
     const homeLink = document.getElementById('home-link');
     const aboutLink = document.getElementById('about-link');
     const contactLink = document.getElementById('contact-link');
+    const projectsLink = document.getElementById('projects-link');
     const contentDiv = document.getElementById('content');
 
     const services = [
@@ -15,22 +16,60 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: 'Computer Building:', description: 'We assemble custom computers to suit your requirements.' }
     ];
 
-    const aboutCards = [
-        { title: 'Experience:', description: 'We specialize in managing, cleaning, and manipulating data to create insightful reports and empower businesses with data-driven decisions.' },
-        { title: 'Education:', description: 'M.S. in Business Analytics – University of Rochester (2025*), B.S. in Computing and Information Technologies – RIT (2018), A.S. in Computer Science – FLCC (2015)' }
+    const aboutCards = {
+        education: [
+            { degree: 'M.S. in Business Analytics and Applied AI', institution: 'University of Rochester (December 2025)' },
+            { degree: 'B.S. in Computing and Information Technology', institution: 'Rochester Institute of Technology (2018)' },
+            { degree: 'A.S. in Computer Science', institution: 'Finger Lakes Community College (2015)' }
+        ],
+        experience: [
+            'Data Management and Cleaning',
+            'Power BI Dashboard Creation and Reporting',
+            'Risk Analysis and Project Management',
+            'Financial Data Analysis and Insights'
+        ]
+    };
+
+    const sampleProjects = [
+        {
+            title: 'Sales Dashboard for Retail',
+            description: 'A Power BI dashboard that provides insights into monthly sales, top products, sales by region, sales by individual reps.',
+            features: ['Monthly Sales Overview', 'Product Category Insights', 'Regional Sales Map'],
+            imageUrl: 'assets/dashboard.png' // Path to the uploaded image file
+        }
     ];
 
-    // Dynamically load the home page with service cards
+    // Function to load the Home page with service cards
     function loadHomePage() {
         renderCards(services);
     }
 
-    // Dynamically load the About Us page with about cards
+    // Function to load the About Us page with structured education and experience
     function loadAboutPage() {
-        renderCards(aboutCards);
+        contentDiv.innerHTML = `
+            <div class="about-section">
+                <h2>About Us</h2>
+                <p>At Rizzieri IT Services, we specialize in providing data-driven solutions for small to medium-sized businesses. Our mission is to empower organizations to make informed decisions through custom dashboards, data cleaning, and analysis.</p>
+
+                <section class="education">
+                    <h3>Educational Background</h3>
+                    <ul>
+                        ${aboutCards.education.map(edu => `<li><strong>${edu.degree}</strong> – ${edu.institution}</li>`).join('')}
+                    </ul>
+                </section>
+
+                <section class="experience">
+                    <h3>Professional Experience</h3>
+                    <p>With years of experience in IT and data solutions, we have worked with clients across industries to help them make data-driven decisions. Some of our core skills and services include:</p>
+                    <ul>
+                        ${aboutCards.experience.map(exp => `<li>${exp}</li>`).join('')}
+                    </ul>
+                </section>
+            </div>
+        `;
     }
 
-    // Dynamically load the Contact Us page with a form
+    // Function to load the Contact Us page with a contact form
     function loadContactPage() {
         contentDiv.innerHTML = `
             <form class="contact-form">
@@ -48,21 +87,38 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', sendEmail); // Bind the submit event to sendEmail function
     }
 
-    // Function to render a list of cards
+    // Function to load the Sample Projects page with side-by-side layout
+    function loadProjectsPage() {
+        contentDiv.innerHTML = ''; // Clear existing content
+        sampleProjects.forEach(project => {
+            const projectElement = document.createElement('div');
+            projectElement.classList.add('project-card');
+            projectElement.innerHTML = `
+                <img src="${project.imageUrl}" alt="${project.title} Image" class="project-image-side">
+                <div class="project-details">
+                    <h2>${project.title}</h2>
+                    <p>${project.description}</p>
+                    <ul>
+                        ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            contentDiv.appendChild(projectElement);
+        });
+    }
+
+    // Function to render cards for the Home page services
     function renderCards(cards) {
         contentDiv.innerHTML = ''; // Clear previous content
         cards.forEach(card => {
             const cardElement = document.createElement('div');
             cardElement.classList.add('card');
-            cardElement.innerHTML = `
-                <h2>${card.title}</h2>
-                <p>${card.description}</p>
-            `;
+            cardElement.innerHTML = `<h2>${card.title}</h2><p>${card.description}</p>`;
             contentDiv.appendChild(cardElement);
         });
     }
 
-    // Function to send email via EmailJS
+    // Function to send an email via EmailJS
     async function sendEmail(event) {
         event.preventDefault(); // Prevent form reload
 
@@ -102,6 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
     contactLink.addEventListener('click', (e) => {
         e.preventDefault();
         loadContactPage();
+    });
+
+    projectsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        loadProjectsPage();
     });
 
     // Load the home page by default

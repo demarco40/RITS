@@ -41,14 +41,14 @@ p {
     gap: 50px;
     margin-top: 20px;
     padding: 10px 0;
-}
-
-.nav-link {
-    color: #4caf50;
-    text-decoration: none;
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.nav-link {
+    color: #FF8C00; /* Updated to orange to match the logo */
+    text-decoration: none;
     transition: color 0.3s ease;
 }
 
@@ -57,7 +57,7 @@ p {
 }
 
 .nav-link:hover {
-    color: #81c784;
+    color: #FFA500; /* Slightly lighter orange for hover */
 }
 
 /* Content Styling */
@@ -69,7 +69,7 @@ p {
     margin-top: 30px;
 }
 
-/* Card Styling */
+/* Card Styling for Home Page */
 .card {
     background-color: #292929;
     padding: 20px;
@@ -79,19 +79,83 @@ p {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.card p {
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
 .card:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* About Us Page Styling */
+.about-section {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.education, .experience {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #292929;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.education h3, .experience h3 {
+    color: #FF8C00; /* Orange color for section headings */
+    margin-bottom: 10px;
+}
+
+.education ul, .experience ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.education li, .experience li {
+    line-height: 1.6;
+}
+
+/* Sample Projects Page Styling - Side-by-Side Layout */
+.project-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: #292929;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.project-image-side {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.project-details {
+    flex: 1;
+    text-align: left;
+}
+
+.project-details h2 {
+    font-size: 1.5rem;
+    color: #FF8C00; /* Orange color for project titles */
+    margin-bottom: 10px;
+}
+
+.project-details ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.project-details li {
+    line-height: 1.6;
 }
 
 /* Contact Form Styling */
@@ -115,7 +179,7 @@ p {
     padding: 10px;
     border-radius: 5px;
     border: none;
-    background-color: #4caf50;
+    background-color: #FF8C00;
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
@@ -123,7 +187,7 @@ p {
 }
 
 .contact-form button:hover {
-    background-color: #388e3c;
+    background-color: #FFA500;
 }
 
 .contact-form p {
@@ -139,12 +203,13 @@ p {
 }
 
 .footer a {
-    color: #4caf50;
+    color: #FF8C00;
     text-decoration: none;
 }
 
 .footer a:hover {
     text-decoration: underline;
+    color: #FFA500;
 }
 
 /* Responsive Design */
@@ -158,11 +223,19 @@ p {
         font-size: 1.2rem;
     }
 
-    .card {
+    .card, .project-card {
         width: 90%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
-    .contact-form {
+    .project-image-side {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .contact-form, .about-section {
         width: 90%;
     }
 }
