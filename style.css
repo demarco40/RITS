@@ -16,7 +16,9 @@ body {
 /* Header Styling */
 .header {
     text-align: center;
-    padding: 50px 20px;
+    padding: 60px 20px;
+    color: #ffffff;
+    background-color: #292929;
 }
 
 .logo {
@@ -34,6 +36,22 @@ p {
     line-height: 1.6;
 }
 
+.cta-button {
+    padding: 10px 20px;
+    background-color: #FF8C00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #FFA500;
+}
+
 /* Navigation Styling */
 .nav {
     display: flex;
@@ -47,7 +65,7 @@ p {
 }
 
 .nav-link {
-    color: #FF8C00; /* Updated to orange to match the logo */
+    color: #FF8C00;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -57,7 +75,7 @@ p {
 }
 
 .nav-link:hover {
-    color: #FFA500; /* Slightly lighter orange for hover */
+    color: #FFA500;
 }
 
 /* Content Styling */
@@ -69,14 +87,14 @@ p {
     margin-top: 30px;
 }
 
-/* Card Styling for Home Page */
+/* Card Styling for Services with Icon and Hover Effect */
 .card {
     background-color: #292929;
     padding: 20px;
     border-radius: 8px;
     width: 300px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -84,115 +102,82 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* About Us Page Styling */
-.about-section {
+.card-icon {
+    font-size: 2rem;
+    color: #FF8C00;
+    margin-bottom: 10px;
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+    background-color: #292929;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    color: #fff;
     text-align: left;
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
 }
 
-.about-section h2 {
+.why-choose-us h2 {
+    color: #FF8C00;
+    margin-bottom: 15px;
+}
+
+.why-choose-us ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.why-choose-us li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 8px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #ffffff;
     font-size: 2rem;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.education, .experience {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #292929;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.education h3, .experience h3 {
-    color: #FF8C00; /* Orange color for section headings */
-    margin-bottom: 10px;
-}
-
-.education ul, .experience ul {
-    list-style-type: disc;
-    margin-left: 20px;
-}
-
-.education li, .experience li {
-    line-height: 1.6;
-}
-
-/* Sample Projects Page Styling - Side-by-Side Layout */
-.project-card {
-    display: flex;
-    align-items: flex-start;
-    background-color: #292929;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.project-image-side {
-    width: 200px;
-    height: auto;
-    border-radius: 8px;
-    margin-right: 15px;
-}
-
-.project-details {
-    flex: 1;
-    text-align: left;
-}
-
-.project-details h2 {
-    font-size: 1.5rem;
-    color: #FF8C00; /* Orange color for project titles */
-    margin-bottom: 10px;
-}
-
-.project-details ul {
-    list-style-type: disc;
-    margin-left: 20px;
-}
-
-.project-details li {
-    line-height: 1.6;
-}
-
-/* Contact Form Styling */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.contact-form input,
-.contact-form textarea {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-}
-
-.contact-form button {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #FF8C00;
-    color: #fff;
-    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: color 0.3s ease;
 }
 
-.contact-form button:hover {
-    background-color: #FFA500;
+.close:hover {
+    color: #FF8C00;
 }
 
-.contact-form p {
-    font-size: 1rem;
-    margin-top: 10px;
+#caption {
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.2rem;
 }
 
 /* Footer Styling */
@@ -204,11 +189,11 @@ p {
 
 .footer a {
     color: #FF8C00;
-    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.5rem;
 }
 
 .footer a:hover {
-    text-decoration: underline;
     color: #FFA500;
 }
 
@@ -230,12 +215,7 @@ p {
         text-align: center;
     }
 
-    .project-image-side {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-
-    .contact-form, .about-section {
+    .contact-form, .about-section, .why-choose-us {
         width: 90%;
     }
 }

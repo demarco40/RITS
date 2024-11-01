@@ -1,4 +1,4 @@
-// Ensure EmailJS is initialized and content dynamically created
+// Initialize EmailJS and set up content dynamically on page load
 document.addEventListener('DOMContentLoaded', () => {
     emailjs.init('BgqcGV8Jgc1BMGgH5'); // Replace with your public key
 
@@ -9,39 +9,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentDiv = document.getElementById('content');
 
     const services = [
-        { title: 'Dashboards & Reports:', description: 'We create dynamic dashboards and reports using Power BI.' },
-        { title: 'Data Analysis:', description: 'We analyze complex datasets to uncover trends and patterns.' },
-        { title: 'Data Migration & Cleaning:', description: 'We offer seamless data migration and cleaning services.' },
-        { title: 'Website Creation:', description: 'We build custom websites tailored to your business needs.' },
-        { title: 'Computer Building:', description: 'We assemble custom computers to suit your requirements.' }
+        { title: 'Dashboards & Reports:', icon: '📊', description: 'We create dynamic dashboards and reports using Power BI.' },
+        { title: 'Data Analysis:', icon: '📈', description: 'We analyze complex datasets to uncover trends and patterns.' },
+        { title: 'Data Migration & Cleaning:', icon: '🧹', description: 'We offer seamless data migration and cleaning services.' },
+        { title: 'Website Creation:', icon: '💻', description: 'We build custom websites tailored to your business needs.' },
+        { title: 'Computer Building:', icon: '🖥️', description: 'We assemble custom computers to suit your requirements.' }
     ];
-
-    const aboutCards = {
-        education: [
-            { degree: 'M.S. in Business Analytics and Applied AI', institution: 'University of Rochester (December 2025)' },
-            { degree: 'B.S. in Computing and Information Technology', institution: 'Rochester Institute of Technology (2018)' },
-            { degree: 'A.S. in Computer Science', institution: 'Finger Lakes Community College (2015)' }
-        ],
-        experience: [
-            'Data Management and Cleaning',
-            'Power BI Dashboard Creation and Reporting',
-            'Risk Analysis and Project Management',
-            'Financial Data Analysis and Insights'
-        ]
-    };
 
     const sampleProjects = [
         {
             title: 'Sales Dashboard for Retail',
-            description: 'A Power BI dashboard that provides insights into monthly sales, top products, sales by region, sales by individual reps.',
+            description: 'A Power BI dashboard that provides insights into monthly sales, top products, and sales by region.',
             features: ['Monthly Sales Overview', 'Product Category Insights', 'Regional Sales Map'],
-            imageUrl: 'assets/dashboard.png' // Path to the uploaded image file
+            imageUrl: 'assets/dashboard.png', // Path to your image
+            caption: 'Sales Dashboard for Retail'
         }
     ];
 
     // Function to load the Home page with service cards
     function loadHomePage() {
-        renderCards(services);
+        contentDiv.innerHTML = ''; // Clear previous content
+        services.forEach(service => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `
+                <div class="card-icon">${service.icon}</div>
+                <h2>${service.title}</h2>
+                <p>${service.description}</p>
+            `;
+            contentDiv.appendChild(card);
+        });
     }
 
     // Function to load the About Us page with structured education and experience
@@ -54,7 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <section class="education">
                     <h3>Educational Background</h3>
                     <ul>
-                        ${aboutCards.education.map(edu => `<li><strong>${edu.degree}</strong> – ${edu.institution}</li>`).join('')}
+                        <li><strong>M.S. in Business Analytics and Applied AI</strong> – University of Rochester (Expected 2025)</li>
+                        <li><strong>B.S. in Computing and Information Technology</strong> – Rochester Institute of Technology (2018)</li>
+                        <li><strong>A.S. in Computer Science</strong> – Finger Lakes Community College (2015)</li>
                     </ul>
                 </section>
 
@@ -62,7 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3>Professional Experience</h3>
                     <p>With years of experience in IT and data solutions, we have worked with clients across industries to help them make data-driven decisions. Some of our core skills and services include:</p>
                     <ul>
-                        ${aboutCards.experience.map(exp => `<li>${exp}</li>`).join('')}
+                        <li>Data Management and Cleaning</li>
+                        <li>Power BI Dashboard Creation and Reporting</li>
+                        <li>Risk Analysis and Project Management</li>
+                        <li>Financial Data Analysis and Insights</li>
                     </ul>
                 </section>
             </div>
@@ -87,14 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', sendEmail); // Bind the submit event to sendEmail function
     }
 
-    // Function to load the Sample Projects page with side-by-side layout
+    // Function to load the Sample Projects page with clickable images
     function loadProjectsPage() {
         contentDiv.innerHTML = ''; // Clear existing content
         sampleProjects.forEach(project => {
             const projectElement = document.createElement('div');
             projectElement.classList.add('project-card');
             projectElement.innerHTML = `
-                <img src="${project.imageUrl}" alt="${project.title} Image" class="project-image-side">
+                <img src="${project.imageUrl}" alt="${project.title}" class="project-image-side" data-caption="${project.caption}">
                 <div class="project-details">
                     <h2>${project.title}</h2>
                     <p>${project.description}</p>
@@ -105,18 +107,37 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             contentDiv.appendChild(projectElement);
         });
-    }
 
-    // Function to render cards for the Home page services
-    function renderCards(cards) {
-        contentDiv.innerHTML = ''; // Clear previous content
-        cards.forEach(card => {
-            const cardElement = document.createElement('div');
-            cardElement.classList.add('card');
-            cardElement.innerHTML = `<h2>${card.title}</h2><p>${card.description}</p>`;
-            contentDiv.appendChild(cardElement);
+        // Set up click event listeners for each project image to open the modal
+        document.querySelectorAll('.project-image-side').forEach(image => {
+            image.addEventListener('click', function() {
+                openModal(this.src, this.getAttribute('data-caption'));
+            });
         });
     }
+
+    // Function to open the modal with the clicked image
+    function openModal(src, caption) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+
+        modal.style.display = "flex";
+        modalImg.src = src;
+        captionText.textContent = caption;
+    }
+
+    // Event listener to close the modal when clicking the "close" button
+    document.querySelector('.close').onclick = function() {
+        document.getElementById("imageModal").style.display = "none";
+    };
+
+    // Event listener to close the modal when clicking outside the modal content
+    document.getElementById("imageModal").onclick = function(event) {
+        if (event.target === this) {
+            this.style.display = "none";
+        }
+    };
 
     // Function to send an email via EmailJS
     async function sendEmail(event) {
